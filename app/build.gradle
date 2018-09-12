@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.2"
+    defaultConfig {
+        applicationId "com.ljubenvassilev.cities"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:1.0.0-rc02"
+    implementation "androidx.recyclerview:recyclerview:1.0.0-rc02"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN"
+
+    /*Architecture components*/
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-runtime:$ARCHITECTURE"
+    implementation "androidx.lifecycle:lifecycle-extensions:$ARCHITECTURE"
+    kapt "androidx.lifecycle:lifecycle-compiler:$ARCHITECTURE"
+
+    /*Room*/
+    implementation "androidx.room:room-runtime:$ARCHITECTURE"
+    kapt "androidx.room:room-compiler:$ARCHITECTURE"
+
+    /*Dagger*/
+    implementation "com.google.dagger:dagger:$DAGGER"
+    kapt "com.google.dagger:dagger-compiler:$DAGGER"
+
+    /*Networking*/
+    implementation "com.squareup.okhttp3:okhttp:$OKHTTP"
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT"
+
+}
